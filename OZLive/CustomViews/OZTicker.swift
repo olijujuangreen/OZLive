@@ -40,13 +40,6 @@ class OZTicker {
         }
     }
     
-//    func addTickerToView(view: UIView) {
-//        view.addSubview(tickerLabel)
-//        NSLayoutConstraint.activate([
-//            tickerLabel.bottomAnchor.constraint(equalTo: movieBannerImageView.bottomAnchor, constant: 10),
-//            tickerLabel.centerXAnchor.constraint(equalTo: movieBannerImageView.centerXAnchor),
-//        ])
-//    }
 }
 
 
