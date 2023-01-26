@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C1572052982ED920036D8F3 /* OZTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1572042982ED920036D8F3 /* OZTabBarController.swift */; };
+		4C1572072982FAB60036D8F3 /* OZTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1572062982FAB60036D8F3 /* OZTicker.swift */; };
 		4C2E7DF829707B28002867B6 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E7DF729707B28002867B6 /* SignupVC.swift */; };
 		4C62BB05297EF860004EFE8B /* OZError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62BB04297EF860004EFE8B /* OZError.swift */; };
 		4C62BB07297F011E004EFE8B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62BB06297F011E004EFE8B /* HomeVC.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		4C1572042982ED920036D8F3 /* OZTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OZTabBarController.swift; sourceTree = "<group>"; };
+		4C1572062982FAB60036D8F3 /* OZTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OZTicker.swift; sourceTree = "<group>"; };
 		4C2E7DF729707B28002867B6 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		4C62BB04297EF860004EFE8B /* OZError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OZError.swift; sourceTree = "<group>"; };
 		4C62BB06297F011E004EFE8B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		4C810A2D297F5401005FBBD7 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				4C1572062982FAB60036D8F3 /* OZTicker.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				4C810A32297F57E6005FBBD7 /* MainCoordinator.swift in Sources */,
 				4C2E7DF829707B28002867B6 /* SignupVC.swift in Sources */,
 				4C1572052982ED920036D8F3 /* OZTabBarController.swift in Sources */,
+				4C1572072982FAB60036D8F3 /* OZTicker.swift in Sources */,
 				4C62BB07297F011E004EFE8B /* HomeVC.swift in Sources */,
 				4C810A30297F5702005FBBD7 /* Coordinator.swift in Sources */,
 				4CA434B1296F0D2A00DCD5D2 /* AppDelegate.swift in Sources */,

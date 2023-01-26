@@ -69,6 +69,8 @@ enum AssetSize: CGFloat {
     case standardButtonHeight   = 94
     case largeButtonWidth       = 180
     case largeButtonHeight      = 140
+    case movieBannerHeight      = 400
+    case movieBannerWidth       = 220
 }
 
 enum TextFieldValidation: String {
