@@ -32,7 +32,7 @@ class LoginVC: UIViewController {
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Log In", for: .normal)
-        button.addTarget(LoginVC.self, action: #selector(loginPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -52,13 +52,14 @@ class LoginVC: UIViewController {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
             if error != nil { return }
             guard result != nil else { return }
+            guard let self = self else { return }
             
-            let homeVC = HomeVC()
-            let nav = UINavigationController(rootViewController: homeVC)
-            self.present(nav, animated: true, completion: nil)
+            let ozTabBarController = OZTabBarController()
+            ozTabBarController.modalPresentationStyle = .fullScreen
+            self.present(ozTabBarController, animated: true)
         }
     }
     

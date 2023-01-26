@@ -10,12 +10,22 @@ import FirebaseAuth
 
 class SignupVC: UIViewController {
     var coordinator: MainCoordinator?
+//    MARK: - UIElements
     
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.placeholder = "Email"
+        textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    let usernameTextField: UITextField = {
+        let textField = UITextField()
+        textField.autocorrectionType = .no
+        textField.placeholder = "Username"
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -32,8 +42,8 @@ class SignupVC: UIViewController {
     
     let confirmPasswordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Re-enter Password"
-        textField.borderStyle = .roundedRect
+        textField.placeholder       = "Re-enter Password"
+        textField.borderStyle       = .roundedRect
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -41,7 +51,7 @@ class SignupVC: UIViewController {
     
     let signupButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("oodle Up", for: .normal)
+        button.setTitle("Signup", for: .normal)
         button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -63,12 +73,19 @@ class SignupVC: UIViewController {
             return
         }
         
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
+            guard let self = self else { return }
             if error != nil { return }
             guard result != nil else { return }
-            self.coordinator!.navigateHome()
+            
+            let ozTabBarController = OZTabBarController()
+            ozTabBarController.modalPresentationStyle = .fullScreen
+            self.present(ozTabBarController, animated: true)
         }
     }
+    
+    
+    
     
     
     
@@ -77,26 +94,27 @@ class SignupVC: UIViewController {
         setupViews()
     }
     
-    func isValidEmail(email:String) -> Bool {
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", TextFieldValidation.emailRegex.rawValue)
-        return emailPred.evaluate(with: email)
-    }
     
-    func isValidPassword(password: String) -> Bool {
-        let passwordPred = NSPredicate(format: "SELF MATCHES %@", TextFieldValidation.passwordRegex.rawValue)
-        return passwordPred.evaluate(with: password)
-    }
     
+    
+    
+    
+    
+//    MARK: - Constraints
     func setupViews() {
         view.backgroundColor = .systemBackground
-        [emailTextField, passwordTextField, confirmPasswordTextField, signupButton].forEach { view.addSubview($0) }
+        [emailTextField, usernameTextField, passwordTextField, confirmPasswordTextField, signupButton].forEach { view.addSubview($0) }
         
         NSLayoutConstraint.activate([
-            emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constraints.largeVerticalSpacing.rawValue * 2),
             emailTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constraints.widePadding.rawValue),
             emailTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constraints.widePadding.rawValue),
             
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
+            usernameTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
+            usernameTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constraints.widePadding.rawValue),
+            usernameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constraints.widePadding.rawValue),
+            
+            passwordTextField.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
             passwordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constraints.widePadding.rawValue),
             passwordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constraints.widePadding.rawValue),
             

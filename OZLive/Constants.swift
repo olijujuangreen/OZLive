@@ -51,20 +51,20 @@ enum LocalImages: String {
     case signupBtn  = "SignupBtn"
 }
 
+//MARK: - Spacing
 enum Constraints: CGFloat {
-    // MARK: - Horizontal Spacing
+//    Horizontal Spacing
     case widePadding    = 8
     case narrowPadding  = 4
     
-    // MARK: - Vertical Spacing
+//    Vertical Spacing
     case largeVerticalSpacing       = 24
     case standardVerticalSpacing    = 16
 }
 
-
+//MARK: - Sizes
 enum AssetSize: CGFloat {
     case largeBannerHeight      = 200
-    
     case standarButtonWidth     = 120
     case standardButtonHeight   = 94
     case largeButtonWidth       = 180

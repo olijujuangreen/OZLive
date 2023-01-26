@@ -13,38 +13,21 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        validateUser()
+        setUser()
         view.backgroundColor = .systemBackground
-        setupNavigationBar()
     }
     
-    func setupNavigationBar() {
-        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navigationItem.rightBarButtonItem = logoutButton
-    }
     
-    @objc func handleLogout() {
-        // Logout code goes here
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        // Present the AuthenticationVC modally
-        let authVC = AuthenticationVC()
-        authVC.modalPresentationStyle = .fullScreen
-        present(authVC, animated: false, completion: nil)
-    }
     
     func setUser() {
-        title = user?.email
+        title = "Home"
     }
     
     func validateUser() {
         if user == nil {
             let authVC = AuthenticationVC()
             authVC.modalPresentationStyle = .fullScreen
-            present(authVC, animated: true)
+            present(authVC, animated: false)
         }
     }
 
