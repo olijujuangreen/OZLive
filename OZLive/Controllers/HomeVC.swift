@@ -8,7 +8,8 @@
 import UIKit
 import Firebase
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController{
+    
     var user = Auth.auth().currentUser
     let premiereDate = Calendar.current.date(byAdding: .second, value: 5, to: Date())
     var countDown = 20
@@ -32,7 +33,7 @@ class HomeVC: UIViewController {
         return label
     }()
     
-    let enterButton: UIButton = {
+    lazy var enterButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Enter", for: .normal)
         button.addTarget(self, action: #selector(enterButtonPressed), for: .touchUpInside)
@@ -41,9 +42,15 @@ class HomeVC: UIViewController {
         return button
     }()
     @objc func enterButtonPressed() {
-        let vc = MoviePlayerVC()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        
+        if user != nil {
+            let vc = MoviePlayerVC()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        } else {
+            let vc = AuthenticationVC()
+            present(vc, animated: true)
+        }
     }
     
     

@@ -8,6 +8,20 @@
 import UIKit
 import AVFoundation
 
+extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId")
+        return cell!
+    }
+    
+    
+}
+
 class MoviePlayerVC: UIViewController {
     var player = AVPlayer()
     
@@ -18,7 +32,7 @@ class MoviePlayerVC: UIViewController {
         return view
     }()
     
-    let dismissButton: UIButton = {
+    lazy var dismissButton: UIButton = {
         let btn = UIButton()
         let img = UIImage(systemName: "x.circle.fill")
         btn.tintColor = .white
