@@ -15,7 +15,6 @@ class OZTabBarController: UITabBarController {
     
     func createHomeNavController() -> UINavigationController {
         let homeVC         = HomeVC()
-        homeVC.title       = "Home"
         homeVC.tabBarItem  = UITabBarItem(title: "Home", image: UIImage.init(systemName: "house"), tag: 0)
         
         return UINavigationController(rootViewController: homeVC)

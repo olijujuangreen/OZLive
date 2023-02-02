@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 
 class SignupVC: UIViewController {
     var coordinator: MainCoordinator?
+
 //    MARK: - UIElements
-    
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.autocapitalizationType = .none
@@ -49,7 +49,7 @@ class SignupVC: UIViewController {
         return textField
     }()
     
-    let signupButton: UIButton = {
+    lazy var signupButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Signup", for: .normal)
         button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
@@ -57,7 +57,7 @@ class SignupVC: UIViewController {
         return button
     }()
     @objc func handleSignup() {
-        guard let email = emailTextField.text?.lowercased(), let password = passwordTextField.text else { return }
+        guard let email = emailTextField.text?.lowercased(), let password = passwordTextField.text, let username = usernameTextField.text else { return }
         
         do {
             
@@ -77,6 +77,20 @@ class SignupVC: UIViewController {
             guard let self = self else { return }
             if error != nil { return }
             guard result != nil else { return }
+            guard let uid = result?.user.uid else { return }
+            
+            let reference = Database.database().reference(fromURL: Storage.referenceURLString.rawValue)
+            let usersReference = reference.child("users").child(uid)
+            let values = ["email": email, "password": password, "username": username]
+            usersReference.updateChildValues(values) { databaseError, databaseReference in
+                if databaseError != nil {
+                    print("THERE WAS AN ERROR \(databaseError)")
+                    return
+                }
+                
+                print("User Saved Successfully")
+            }
+            
             
             let ozTabBarController = OZTabBarController()
             ozTabBarController.modalPresentationStyle = .fullScreen
