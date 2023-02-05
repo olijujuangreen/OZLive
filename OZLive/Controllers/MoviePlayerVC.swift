@@ -8,22 +8,9 @@
 import UIKit
 import AVFoundation
 
-extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId")
-        return cell!
-    }
-    
-    
-}
-
 class MoviePlayerVC: UIViewController {
     var player = AVPlayer()
+    var messages = [String]()
     
     let moviePlayerView: UIView = {
         let view = UIView()
@@ -91,13 +78,13 @@ class MoviePlayerVC: UIViewController {
         ])
         
         self.view.layoutIfNeeded()
-        setupPlayer()
+//        setupPlayer()
         moviePlayerView.addSubview(dismissButton)
         dismissButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
     }
     
     func setupPlayer() {
-        let movieURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/ozlive-95340.appspot.com/o/Marvel%20Studios'%20Avengers_%20Endgame%20-%20Official%20Trailer.mp4?alt=media&token=02891b01-6f02-4164-b976-2930d2e3b1b9")!
+        let movieURL = URL(string: Storage.movieURLString.rawValue)!
         
         player = AVPlayer(url: movieURL)
         let playerLayer = AVPlayerLayer(player: player)
@@ -112,4 +99,16 @@ class MoviePlayerVC: UIViewController {
 
     }
 
+}
+
+extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId")
+        return cell!
+    }
 }
