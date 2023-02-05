@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C1572052982ED920036D8F3 /* OZTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1572042982ED920036D8F3 /* OZTabBarController.swift */; };
+		4C1572072982FAB60036D8F3 /* OZTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1572062982FAB60036D8F3 /* OZTicker.swift */; };
 		4C2E7DF829707B28002867B6 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E7DF729707B28002867B6 /* SignupVC.swift */; };
 		4C62BB05297EF860004EFE8B /* OZError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62BB04297EF860004EFE8B /* OZError.swift */; };
 		4C62BB07297F011E004EFE8B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62BB06297F011E004EFE8B /* HomeVC.swift */; };
@@ -32,10 +33,12 @@
 		4CAB323B2981EDE9003C1811 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB323A2981EDE9003C1811 /* ProfileVC.swift */; };
 		E0D5382A29831FEB00CAFD59 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5382929831FEB00CAFD59 /* SettingsVC.swift */; };
 		E0D5382D298331C900CAFD59 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5382C298331C900CAFD59 /* SettingsCell.swift */; };
+		4CC5037C29836B2B00C66751 /* MoviePlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C1572042982ED920036D8F3 /* OZTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OZTabBarController.swift; sourceTree = "<group>"; };
+		4C1572062982FAB60036D8F3 /* OZTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OZTicker.swift; sourceTree = "<group>"; };
 		4C2E7DF729707B28002867B6 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		4C62BB04297EF860004EFE8B /* OZError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OZError.swift; sourceTree = "<group>"; };
 		4C62BB06297F011E004EFE8B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 		4CAB323A2981EDE9003C1811 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		E0D5382929831FEB00CAFD59 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		E0D5382C298331C900CAFD59 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				4C62BB06297F011E004EFE8B /* HomeVC.swift */,
 				4CAB323A2981EDE9003C1811 /* ProfileVC.swift */,
 				E0D5382929831FEB00CAFD59 /* SettingsVC.swift */,
+				4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */,
 				4C2E7DF92970805A002867B6 /* Authentication */,
 			);
 			path = Controllers;
@@ -99,6 +104,7 @@
 		4C810A2D297F5401005FBBD7 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				4C1572062982FAB60036D8F3 /* OZTicker.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -252,8 +258,10 @@
 				4C810A32297F57E6005FBBD7 /* MainCoordinator.swift in Sources */,
 				4C2E7DF829707B28002867B6 /* SignupVC.swift in Sources */,
 				4C1572052982ED920036D8F3 /* OZTabBarController.swift in Sources */,
+				4C1572072982FAB60036D8F3 /* OZTicker.swift in Sources */,
 				4C62BB07297F011E004EFE8B /* HomeVC.swift in Sources */,
 				4C810A30297F5702005FBBD7 /* Coordinator.swift in Sources */,
+				4CC5037C29836B2B00C66751 /* MoviePlayerVC.swift in Sources */,
 				4CA434B1296F0D2A00DCD5D2 /* AppDelegate.swift in Sources */,
 				4CA434DA296F147000DCD5D2 /* Constants.swift in Sources */,
 				4CA434B3296F0D2A00DCD5D2 /* SceneDelegate.swift in Sources */,
