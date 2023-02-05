@@ -10,7 +10,7 @@ class OZTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewControllers = [createHomeNavController(), createProfileNavController()]
+        self.viewControllers = [createHomeNavController(), createProfileNavController(), createSettingsNavController()]
     }
     
     func createHomeNavController() -> UINavigationController {
@@ -26,6 +26,14 @@ class OZTabBarController: UITabBarController {
         profileVC.tabBarItem  = UITabBarItem(title: "Profile", image: UIImage.init(systemName: "person"), tag: 1)
         
         return UINavigationController(rootViewController: profileVC)
+    }
+    
+    func createSettingsNavController() -> UINavigationController {
+        let settingsVC         = SettingsVC()
+        settingsVC.title       = "Settings"
+        settingsVC.tabBarItem  = UITabBarItem(title: "Settings", image: UIImage.init(systemName: "slider.horizontal.3"), tag: 2)
+        
+        return UINavigationController(rootViewController: settingsVC)
     }
     
 }
