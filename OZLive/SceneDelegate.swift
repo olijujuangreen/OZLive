@@ -10,12 +10,15 @@ import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    let mainCoordinator: MainCoordinator
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        let ozTabBar = OZTabBarController()
-        let nav = UINavigationController(rootViewController: ozTabBar)
+        
+        let navController = UINavigationController()
+        mainCoordinator = MainCoordinator(navigationController: navController)
+        mainCoordinator.start()
         window?.rootViewController = nav
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
