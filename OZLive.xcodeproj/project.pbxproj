@@ -34,6 +34,7 @@
 		E0D5382A29831FEB00CAFD59 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5382929831FEB00CAFD59 /* SettingsVC.swift */; };
 		E0D5382D298331C900CAFD59 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5382C298331C900CAFD59 /* SettingsCell.swift */; };
 		4CC5037C29836B2B00C66751 /* MoviePlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */; };
+		4CE7438A2991BEC600A509D6 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE743892991BEC600A509D6 /* AuthCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		E0D5382929831FEB00CAFD59 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		E0D5382C298331C900CAFD59 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayerVC.swift; sourceTree = "<group>"; };
+		4CE743892991BEC600A509D6 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			children = (
 				4C810A2F297F5702005FBBD7 /* Coordinator.swift */,
 				4C810A31297F57E6005FBBD7 /* MainCoordinator.swift */,
+				4CE743892991BEC600A509D6 /* AuthCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				4C1572052982ED920036D8F3 /* OZTabBarController.swift in Sources */,
 				4C1572072982FAB60036D8F3 /* OZTicker.swift in Sources */,
 				4C62BB07297F011E004EFE8B /* HomeVC.swift in Sources */,
+				4CE7438A2991BEC600A509D6 /* AuthCoordinator.swift in Sources */,
 				4C810A30297F5702005FBBD7 /* Coordinator.swift in Sources */,
 				4CC5037C29836B2B00C66751 /* MoviePlayerVC.swift in Sources */,
 				4CA434B1296F0D2A00DCD5D2 /* AppDelegate.swift in Sources */,
