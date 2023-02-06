@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol AuthDelegate: AnyObject {
+    func didTapLogin()
+    func didTapSignup()
+}
+
 class AuthCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -16,8 +21,24 @@ class AuthCoordinator: Coordinator {
     }
     
     func start()  {
-        
+        let authVC = AuthenticationVC(authDelegate: self)
+        navigationController.pushViewController(authVC, animated: true)
     }
     
+    
+}
+
+extension AuthCoordinator: AuthDelegate {
+    func didTapLogin() {
+        let loginVC = LoginVC()
+        loginVC.modalPresentationStyle = .formSheet
+        navigationController.present(loginVC, animated: true)
+    }
+    
+    func didTapSignup() {
+        let signupVC = SignupVC()
+        signupVC.modalPresentationStyle = .formSheet
+        navigationController.present(signupVC, animated: true)
+    }
     
 }

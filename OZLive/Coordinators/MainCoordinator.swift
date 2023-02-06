@@ -32,12 +32,15 @@ class MainCoordinator: Coordinator {
     
     func checkForUser() {
         if Auth.auth().currentUser != nil {
-            let homeVC = HomeVC()
+//            let homeVC = HomeVC()
 //            homeVC.coordinator = self
-            navigationController.pushViewController(homeVC, animated: true)
+//            navigationController.pushViewController(homeVC, animated: true)
         } else {
-            let authVC = AuthenticationVC()
-            navigationController.pushViewController(authVC, animated: true)
+//            let authVC = AuthenticationVC()
+//            navigationController.pushViewController(authVC, animated: true)
+            let authCoordinator = AuthCoordinator(navigationController: navigationController)
+            childCoordinators.append(authCoordinator)
+            authCoordinator.start()
         }
     }
     
