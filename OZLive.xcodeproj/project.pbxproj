@@ -31,10 +31,11 @@
 		4CA434D6296F0F8000DCD5D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CA434D5296F0F7F00DCD5D2 /* GoogleService-Info.plist */; };
 		4CA434DA296F147000DCD5D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA434D9296F147000DCD5D2 /* Constants.swift */; };
 		4CAB323B2981EDE9003C1811 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB323A2981EDE9003C1811 /* ProfileVC.swift */; };
-		E0D5382A29831FEB00CAFD59 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5382929831FEB00CAFD59 /* SettingsVC.swift */; };
-		E0D5382D298331C900CAFD59 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5382C298331C900CAFD59 /* SettingsCell.swift */; };
+		4CBCB1062992F8D80011E542 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCB1052992F8D80011E542 /* TabCoordinator.swift */; };
 		4CC5037C29836B2B00C66751 /* MoviePlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */; };
 		4CE7438A2991BEC600A509D6 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE743892991BEC600A509D6 /* AuthCoordinator.swift */; };
+		E0D5382A29831FEB00CAFD59 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5382929831FEB00CAFD59 /* SettingsVC.swift */; };
+		E0D5382D298331C900CAFD59 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5382C298331C900CAFD59 /* SettingsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,10 +58,11 @@
 		4CA434D5296F0F7F00DCD5D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CA434D9296F147000DCD5D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4CAB323A2981EDE9003C1811 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
-		E0D5382929831FEB00CAFD59 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		E0D5382C298331C900CAFD59 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		4CBCB1052992F8D80011E542 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayerVC.swift; sourceTree = "<group>"; };
 		4CE743892991BEC600A509D6 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		E0D5382929831FEB00CAFD59 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		E0D5382C298331C900CAFD59 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				4C810A2F297F5702005FBBD7 /* Coordinator.swift */,
 				4C810A31297F57E6005FBBD7 /* MainCoordinator.swift */,
 				4CE743892991BEC600A509D6 /* AuthCoordinator.swift */,
+				4CBCB1052992F8D80011E542 /* TabCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				4CAB323B2981EDE9003C1811 /* ProfileVC.swift in Sources */,
 				4C810A32297F57E6005FBBD7 /* MainCoordinator.swift in Sources */,
 				4C2E7DF829707B28002867B6 /* SignupVC.swift in Sources */,
+				4CBCB1062992F8D80011E542 /* TabCoordinator.swift in Sources */,
 				4C1572052982ED920036D8F3 /* OZTabBarController.swift in Sources */,
 				4C1572072982FAB60036D8F3 /* OZTicker.swift in Sources */,
 				4C62BB07297F011E004EFE8B /* HomeVC.swift in Sources */,

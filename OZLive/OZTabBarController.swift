@@ -6,7 +6,21 @@
 //
 import UIKit
 
+protocol OZTabBarControllerDelegate: AnyObject {
+    func returnToAuth()
+}
+
 class OZTabBarController: UITabBarController {
+    weak var tabBarDelegate: OZTabBarControllerDelegate?
+    
+    init(tabBarDelegate: OZTabBarControllerDelegate) {
+        super.init(nibName: nil, bundle: nil)
+        self.tabBarDelegate = tabBarDelegate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +36,7 @@ class OZTabBarController: UITabBarController {
     
     func createProfileNavController() -> UINavigationController {
         let profileVC         = ProfileVC()
+        profileVC.completion  = { self.tabBarDelegate?.returnToAuth() }
         profileVC.title       = "Profile"
         profileVC.tabBarItem  = UITabBarItem(title: "Profile", image: UIImage.init(systemName: "person"), tag: 1)
         
