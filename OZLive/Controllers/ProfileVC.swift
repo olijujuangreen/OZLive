@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 
 class ProfileVC: UIViewController {
+    var completion: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,7 @@ class ProfileVC: UIViewController {
             print ("Error signing out: %@", signOutError)
         }
         
-//        let authVC = AuthenticationVC(authDelegate: )
-//        authVC.modalPresentationStyle = .fullScreen
-//        present(authVC, animated: false, completion: nil)
+        self.completion?()
     }
 
 }
