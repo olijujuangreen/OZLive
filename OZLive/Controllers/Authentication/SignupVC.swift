@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class SignupVC: UIViewController {
-    var coordinator: MainCoordinator?
+    var completion: (() -> Void)?
 
 //    MARK: - UIElements
     let emailTextField: UITextField = {
@@ -91,10 +91,8 @@ class SignupVC: UIViewController {
                 print("User Saved Successfully")
             }
             
+            self.completion?()
             
-            let ozTabBarController = OZTabBarController()
-            ozTabBarController.modalPresentationStyle = .fullScreen
-            self.present(ozTabBarController, animated: true)
         }
     }
     

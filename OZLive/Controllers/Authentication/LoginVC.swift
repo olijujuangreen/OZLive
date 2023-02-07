@@ -29,7 +29,7 @@ class LoginVC: UIViewController {
         return textField
     }()
     
-    let loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Log In", for: .normal)
         button.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)

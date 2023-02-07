@@ -28,9 +28,9 @@ class ProfileVC: UIViewController {
             print ("Error signing out: %@", signOutError)
         }
         
-        let authVC = AuthenticationVC()
-        authVC.modalPresentationStyle = .fullScreen
-        present(authVC, animated: false, completion: nil)
+//        let authVC = AuthenticationVC(authDelegate: )
+//        authVC.modalPresentationStyle = .fullScreen
+//        present(authVC, animated: false, completion: nil)
     }
 
 }

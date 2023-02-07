@@ -15,6 +15,8 @@ protocol AuthDelegate: AnyObject {
 class AuthCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    var completion: (()-> Void)?
+    
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -37,6 +39,7 @@ extension AuthCoordinator: AuthDelegate {
     
     func didTapSignup() {
         let signupVC = SignupVC()
+        signupVC.completion = completion
         signupVC.modalPresentationStyle = .formSheet
         navigationController.present(signupVC, animated: true)
     }

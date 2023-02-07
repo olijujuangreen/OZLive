@@ -52,6 +52,7 @@ class AuthenticationVC: UIViewController {
     }
     
     init(authDelegate: AuthDelegate) {
+        super.init(nibName: nil, bundle: nil)
         delegate = authDelegate
     }
     
