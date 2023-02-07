@@ -9,11 +9,12 @@ import UIKit
 import Firebase
 
 class MainCoordinator: Coordinator {
-    var childCoordinators   = [Coordinator]()
-    var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    var childCoordinators   = [Coordinator]()
+    var window: UIWindow
+    
+    init(window: UIWindow) {
+        self.window = window
     }
     
     func start() {
@@ -21,23 +22,28 @@ class MainCoordinator: Coordinator {
     }
     
     func navigateHome() {
-        let homeVC = HomeVC()
-        navigationController.pushViewController(homeVC, animated: true)
-    }
-    
-    func navigateToSignup() {
-        let signupVC = SignupVC()
-        navigationController.pushViewController(signupVC, animated: true)
+        let ozTabBar = OZTabBarController()
+        window.makeKeyAndVisible()
+        window.rootViewController = ozTabBar
     }
     
     func checkForUser() {
         if Auth.auth().currentUser != nil {
-            let homeVC = HomeVC()
-//            homeVC.coordinator = self
-            navigationController.pushViewController(homeVC, animated: true)
+            navigateHome()
         } else {
-            let authVC = AuthenticationVC()
-            navigationController.pushViewController(authVC, animated: true)
+            let navController = UINavigationController()
+            window.rootViewController = navController
+            let authCoordinator = AuthCoordinator(navigationController: navController)
+            
+            authCoordinator.completion = { [weak self] in
+                self?.childCoordinators.removeAll {
+                    $0 as? AuthCoordinator != nil
+                }
+                self?.navigateHome()
+            }
+            
+            childCoordinators.append(authCoordinator)
+            authCoordinator.start()
         }
     }
     

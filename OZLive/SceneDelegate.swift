@@ -10,16 +10,13 @@ import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    let mainCoordinator: MainCoordinator
+    var mainCoordinator: MainCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        
-        let navController = UINavigationController()
-        mainCoordinator = MainCoordinator(navigationController: navController)
-        mainCoordinator.start()
-        window?.rootViewController = nav
+        mainCoordinator = MainCoordinator(window: window!)
+        mainCoordinator?.start()
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
     }

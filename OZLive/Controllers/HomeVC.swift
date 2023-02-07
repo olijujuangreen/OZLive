@@ -48,8 +48,8 @@ class HomeVC: UIViewController{
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         } else {
-            let vc = AuthenticationVC()
-            present(vc, animated: true)
+//            let vc = AuthenticationVC()
+//            present(vc, animated: true)
         }
     }
     

@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 
 class LoginVC: UIViewController {
+    var completion: (() -> Void)?
     
     let emailTextField: UITextField = {
         let textField = UITextField()
@@ -29,7 +30,7 @@ class LoginVC: UIViewController {
         return textField
     }()
     
-    let loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Log In", for: .normal)
         button.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
@@ -57,9 +58,7 @@ class LoginVC: UIViewController {
             guard result != nil else { return }
             guard let self = self else { return }
             
-            let ozTabBarController = OZTabBarController()
-            ozTabBarController.modalPresentationStyle = .fullScreen
-            self.present(ozTabBarController, animated: true)
+            self.completion?()
         }
     }
     

@@ -42,13 +42,22 @@ class AuthenticationVC: UIViewController {
     
     
     
-    
+    weak var delegate: AuthDelegate?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
         setupViews()
+    }
+    
+    init(authDelegate: AuthDelegate) {
+        super.init(nibName: nil, bundle: nil)
+        delegate = authDelegate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -87,14 +96,11 @@ class AuthenticationVC: UIViewController {
     }
     
     @objc func loginPressed() {
-        let vc = LoginVC()
-        present(vc, animated: true)
+        delegate?.didTapLogin()
     }
     
     @objc func signupPressed() {
-        let signupVC = SignupVC()
-        signupVC.modalPresentationStyle = .formSheet
-        present(signupVC, animated: true)
+        delegate?.didTapSignup()
     }
 
 }
