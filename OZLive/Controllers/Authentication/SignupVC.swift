@@ -92,7 +92,6 @@ class SignupVC: UIViewController {
             }
             
             self.completion?()
-            
         }
     }
     

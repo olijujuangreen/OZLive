@@ -33,6 +33,7 @@ class AuthCoordinator: Coordinator {
 extension AuthCoordinator: AuthDelegate {
     func didTapLogin() {
         let loginVC = LoginVC()
+        loginVC.completion = completion
         loginVC.modalPresentationStyle = .formSheet
         navigationController.present(loginVC, animated: true)
     }
