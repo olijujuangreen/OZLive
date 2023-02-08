@@ -11,7 +11,8 @@ import Firebase
 
 class MoviePlayerVC: UIViewController {
     var player = AVPlayer()
-    var messages = [String]()
+    var messages = [Message]()
+    let user = Auth.auth().currentUser
     
     let ref = Database.database().reference()
     
@@ -39,9 +40,15 @@ class MoviePlayerVC: UIViewController {
     
     let chatTableView: UITableView = {
         let table = UITableView()
-        table.backgroundColor = .systemRed
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
+    }()
+    
+    let chatTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Enter Mesasge ..."
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
     }()
     
     
@@ -54,9 +61,11 @@ class MoviePlayerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        retrieveMessages { message in
+        chatTextField.delegate = self
+        retrieveMessages { [weak self] message in
+            guard let self = self else { return }
             self.messages.append(message)
-            chatTableView.reloadData()
+            self.chatTableView.reloadData()
         }
     }
     
@@ -68,7 +77,7 @@ class MoviePlayerVC: UIViewController {
     
     func setupViews() {
         let moviePlayerHeight = (view.frame.width * 1080) / 1920
-        [moviePlayerView, chatTableView].forEach { view.addSubview($0) }
+        [moviePlayerView, chatTableView, chatTextField].forEach { view.addSubview($0) }
         
         NSLayoutConstraint.activate([
         
@@ -80,7 +89,12 @@ class MoviePlayerVC: UIViewController {
             chatTableView.topAnchor.constraint(equalTo: moviePlayerView.bottomAnchor),
             chatTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             chatTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            chatTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constraints.largeVerticalSpacing.rawValue)
+            chatTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constraints.largeVerticalSpacing.rawValue * 2),
+            
+            chatTextField.topAnchor.constraint(equalTo: chatTableView.bottomAnchor),
+            chatTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            chatTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            chatTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         
         ])
         
@@ -116,12 +130,14 @@ class MoviePlayerVC: UIViewController {
     func retrieveMessages(completion: @escaping(Message) -> Void) {
         let messagesRef = ref.child("movieMessages")
         messagesRef.observe(.childAdded) { snapshot in
-            let messageID = snapshot.key
             let messageData = snapshot.value as! [String: String]
-            let message = Message(senderID: messageData["senderID"]!, contents: messageData["message"]!)
-            completion(message)
+            if let senderID = messageData["senderID"], let contents = messageData["message"] {
+                let message = Message(senderID: senderID, contents: contents)
+                completion(message)
+            }
         }
     }
+
 
 }
 
@@ -140,7 +156,7 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
 extension MoviePlayerVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let message = textField.text!
-        sendMessage(senderID: "current_user_id", message: message)
+        sendMessage(senderID: user!.uid, message: message)
         textField.text = ""
         textField.resignFirstResponder()
         return true
