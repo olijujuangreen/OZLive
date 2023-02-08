@@ -7,10 +7,13 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class MoviePlayerVC: UIViewController {
     var player = AVPlayer()
     var messages = [String]()
+    
+    let ref = Database.database().reference()
     
     let moviePlayerView: UIView = {
         let view = UIView()
@@ -51,6 +54,10 @@ class MoviePlayerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        retrieveMessages { message in
+            self.messages.append(message)
+            chatTableView.reloadData()
+        }
     }
     
     
@@ -98,6 +105,23 @@ class MoviePlayerVC: UIViewController {
         player.seek(to: time, toleranceBefore: tolerance, toleranceAfter: tolerance)
 
     }
+    
+    func sendMessage(senderID: String, message: String) {
+        
+        let messageRef = ref.child("movieMessages").childByAutoId()
+        let messageData = ["senderId": senderID, "message": message]
+        messageRef.setValue(messageData)
+    }
+    
+    func retrieveMessages(completion: @escaping(Message) -> Void) {
+        let messagesRef = ref.child("movieMessages")
+        messagesRef.observe(.childAdded) { snapshot in
+            let messageID = snapshot.key
+            let messageData = snapshot.value as! [String: String]
+            let message = Message(senderID: messageData["senderID"]!, contents: messageData["message"]!)
+            completion(message)
+        }
+    }
 
 }
 
@@ -111,4 +135,19 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId")
         return cell!
     }
+}
+
+extension MoviePlayerVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let message = textField.text!
+        sendMessage(senderID: "current_user_id", message: message)
+        textField.text = ""
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+struct Message {
+    let senderID: String
+    let contents: String
 }

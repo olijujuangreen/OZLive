@@ -52,8 +52,8 @@ enum LocalImages: String {
 }
 
 //MARK: - Spacing
-enum Constraints: CGFloat {
-//    Horizontal Spacing
+    enum Constraints: CGFloat {
+    //    Horizontal Spacing
     case widePadding    = 8
     case narrowPadding  = 4
     
