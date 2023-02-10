@@ -7,26 +7,7 @@
 
 import UIKit
 import Firebase
-//
-//class MessageCell: UITableViewCell {
-//    let user = Auth.auth().currentUser
-//
-//    let usernameLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = user.uid
-//        return
-//    }()
-//
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//    }
-//
-//}
+
 class MessageCell: UITableViewCell {
     
     let usernameLabel: UILabel = {
@@ -59,5 +40,11 @@ class MessageCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setMessage(message: Message) {
+        usernameLabel.text = message.senderID
+        messageLabel.text = message.contents
+    }
+    
 }
 

@@ -82,5 +82,5 @@ enum TextFieldValidation: String {
 //MARK: - Storage
 enum Storage: String {
     case referenceURLString = "https://ozlive-95340-default-rtdb.firebaseio.com/"
-    case movieURLString     = "https://firebasestorage.googleapis.com/v0/b/ozlive-95340.appspot.com/o/Marvel%20Studios'%20Avengers_%20Endgame%20-%20Official%20Trailer.mp4?alt=media&token=02891b01-6f02-4164-b976-2930d2e3b1b9"
+    case avengersURLString     = "https://firebasestorage.googleapis.com/v0/b/ozlive-95340.appspot.com/o/Marvel%20Studios'%20Avengers_%20Endgame%20-%20Official%20Trailer.mp4?alt=media&token=02891b01-6f02-4164-b976-2930d2e3b1b9"
 }

@@ -13,6 +13,8 @@
 		4C62BB05297EF860004EFE8B /* OZError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62BB04297EF860004EFE8B /* OZError.swift */; };
 		4C62BB07297F011E004EFE8B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62BB06297F011E004EFE8B /* HomeVC.swift */; };
 		4C62BB09297F1C90004EFE8B /* TextFieldValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62BB08297F1C90004EFE8B /* TextFieldValidation.swift */; };
+		4C680C172995E96800BD83DD /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C680C162995E96800BD83DD /* Movie.swift */; };
+		4C680C192995F1E500BD83DD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C680C182995F1E500BD83DD /* Message.swift */; };
 		4C810A30297F5702005FBBD7 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C810A2F297F5702005FBBD7 /* Coordinator.swift */; };
 		4C810A32297F57E6005FBBD7 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C810A31297F57E6005FBBD7 /* MainCoordinator.swift */; };
 		4C8AFCA329705EC200FFB928 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8AFCA229705EC200FFB928 /* LoginVC.swift */; };
@@ -46,6 +48,8 @@
 		4C62BB04297EF860004EFE8B /* OZError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OZError.swift; sourceTree = "<group>"; };
 		4C62BB06297F011E004EFE8B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		4C62BB08297F1C90004EFE8B /* TextFieldValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidation.swift; sourceTree = "<group>"; };
+		4C680C162995E96800BD83DD /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		4C680C182995F1E500BD83DD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		4C810A2F297F5702005FBBD7 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4C810A31297F57E6005FBBD7 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		4C8AFCA229705EC200FFB928 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -95,6 +99,15 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		4C680C152995E95100BD83DD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C680C162995E96800BD83DD /* Movie.swift */,
+				4C680C182995F1E500BD83DD /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		4C810A2C297F53F1005FBBD7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,21 +118,6 @@
 				4C2E7DF92970805A002867B6 /* Authentication */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		4C810A2D297F5401005FBBD7 /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-				4C1572062982FAB60036D8F3 /* OZTicker.swift */,
-			);
-			path = CustomViews;
-			sourceTree = "<group>";
-		};
-		4C810A2E297F540F005FBBD7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		4C810A33297F57EE005FBBD7 /* Coordinators */ = {
@@ -136,6 +134,7 @@
 		4CA434A4296F0D2A00DCD5D2 = {
 			isa = PBXGroup;
 			children = (
+				4C680C152995E95100BD83DD /* Models */,
 				4CA434AF296F0D2A00DCD5D2 /* OZLive */,
 				4CA434AE296F0D2A00DCD5D2 /* Products */,
 			);
@@ -155,8 +154,6 @@
 				4C62BB04297EF860004EFE8B /* OZError.swift */,
 				4CA434D9296F147000DCD5D2 /* Constants.swift */,
 				4C62BB08297F1C90004EFE8B /* TextFieldValidation.swift */,
-				4C810A2E297F540F005FBBD7 /* Models */,
-				4C810A2D297F5401005FBBD7 /* CustomViews */,
 				E0D5382B2983269A00CAFD59 /* ReusableViews */,
 				4C810A2C297F53F1005FBBD7 /* Controllers */,
 				4C810A33297F57EE005FBBD7 /* Coordinators */,
@@ -173,6 +170,7 @@
 		E0D5382B2983269A00CAFD59 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				4C1572062982FAB60036D8F3 /* OZTicker.swift */,
 				4C1572042982ED920036D8F3 /* OZTabBarController.swift */,
 				E0D5382C298331C900CAFD59 /* SettingsCell.swift */,
 				4CA4B7B5299473B200226B8A /* MessageCell.swift */,
@@ -277,8 +275,10 @@
 				4CA434B1296F0D2A00DCD5D2 /* AppDelegate.swift in Sources */,
 				4CA434DA296F147000DCD5D2 /* Constants.swift in Sources */,
 				4CA434B3296F0D2A00DCD5D2 /* SceneDelegate.swift in Sources */,
+				4C680C172995E96800BD83DD /* Movie.swift in Sources */,
 				4C62BB09297F1C90004EFE8B /* TextFieldValidation.swift in Sources */,
 				4CA434C5296F0DEA00DCD5D2 /* AuthenticationVC.swift in Sources */,
+				4C680C192995F1E500BD83DD /* Message.swift in Sources */,
 				4C8AFCA329705EC200FFB928 /* LoginVC.swift in Sources */,
 				4C62BB05297EF860004EFE8B /* OZError.swift in Sources */,
 				E0D5382A29831FEB00CAFD59 /* SettingsVC.swift in Sources */,

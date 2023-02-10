@@ -105,7 +105,7 @@ class MoviePlayerVC: UIViewController {
     }
     
     func setupPlayer() {
-        let movieURL = URL(string: Storage.movieURLString.rawValue)!
+        let movieURL = URL(string: Storage.avengersURLString.rawValue)!
         
         player = AVPlayer(url: movieURL)
         let playerLayer = AVPlayerLayer(player: player)
@@ -149,10 +149,9 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageCell
-        
-        let message = messages[indexPath.row]
+        cell.setMessage(message: messages[indexPath.row])
 //        cell.usernameLabel.text = message.username
-        cell.messageLabel.text = message.contents
+//        cell.messageLabel.text = message.contents
         
         return cell
     }
@@ -169,7 +168,3 @@ extension MoviePlayerVC: UITextFieldDelegate {
     }
 }
 
-struct Message {
-    let senderID: String
-    let contents: String
-}
