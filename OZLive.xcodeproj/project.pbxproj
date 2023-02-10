@@ -30,6 +30,7 @@
 		4CA434D4296F0EF500DCD5D2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4CA434D3296F0EF500DCD5D2 /* FirebaseStorage */; };
 		4CA434D6296F0F8000DCD5D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CA434D5296F0F7F00DCD5D2 /* GoogleService-Info.plist */; };
 		4CA434DA296F147000DCD5D2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA434D9296F147000DCD5D2 /* Constants.swift */; };
+		4CA4B7B6299473B200226B8A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B7B5299473B200226B8A /* MessageCell.swift */; };
 		4CAB323B2981EDE9003C1811 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB323A2981EDE9003C1811 /* ProfileVC.swift */; };
 		4CBCB1062992F8D80011E542 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCB1052992F8D80011E542 /* TabCoordinator.swift */; };
 		4CC5037C29836B2B00C66751 /* MoviePlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */; };
@@ -57,6 +58,7 @@
 		4CA434C4296F0DEA00DCD5D2 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
 		4CA434D5296F0F7F00DCD5D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CA434D9296F147000DCD5D2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4CA4B7B5299473B200226B8A /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		4CAB323A2981EDE9003C1811 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		4CBCB1052992F8D80011E542 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		4CC5037B29836B2B00C66751 /* MoviePlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayerVC.swift; sourceTree = "<group>"; };
@@ -160,7 +162,6 @@
 				4C810A33297F57EE005FBBD7 /* Coordinators */,
 				4CA434B0296F0D2A00DCD5D2 /* AppDelegate.swift */,
 				4CA434B2296F0D2A00DCD5D2 /* SceneDelegate.swift */,
-				4C1572042982ED920036D8F3 /* OZTabBarController.swift */,
 				4CA434B9296F0D2D00DCD5D2 /* Assets.xcassets */,
 				4CA434BB296F0D2D00DCD5D2 /* LaunchScreen.storyboard */,
 				4CA434BE296F0D2D00DCD5D2 /* Info.plist */,
@@ -172,7 +173,9 @@
 		E0D5382B2983269A00CAFD59 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				4C1572042982ED920036D8F3 /* OZTabBarController.swift */,
 				E0D5382C298331C900CAFD59 /* SettingsCell.swift */,
+				4CA4B7B5299473B200226B8A /* MessageCell.swift */,
 			);
 			path = ReusableViews;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CAB323B2981EDE9003C1811 /* ProfileVC.swift in Sources */,
+				4CA4B7B6299473B200226B8A /* MessageCell.swift in Sources */,
 				4C810A32297F57E6005FBBD7 /* MainCoordinator.swift in Sources */,
 				4C2E7DF829707B28002867B6 /* SignupVC.swift in Sources */,
 				4CBCB1062992F8D80011E542 /* TabCoordinator.swift in Sources */,

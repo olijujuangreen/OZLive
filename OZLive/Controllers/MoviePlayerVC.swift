@@ -148,9 +148,15 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId")
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageCell
+        
+        let message = messages[indexPath.row]
+//        cell.usernameLabel.text = message.username
+        cell.messageLabel.text = message.contents
+        
+        return cell
     }
+
 }
 
 extension MoviePlayerVC: UITextFieldDelegate {

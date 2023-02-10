@@ -18,10 +18,10 @@ class ProfileVC: UIViewController {
     }
     
     func setupNavigationBar() {
-        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        let selector = #selector(handleLogout)
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: selector)
         navigationItem.rightBarButtonItem = logoutButton
-    }
-    
+    }   
     @objc func handleLogout() {
         do {
             try Auth.auth().signOut()
