@@ -134,7 +134,6 @@
 		4CA434A4296F0D2A00DCD5D2 = {
 			isa = PBXGroup;
 			children = (
-				4C680C152995E95100BD83DD /* Models */,
 				4CA434AF296F0D2A00DCD5D2 /* OZLive */,
 				4CA434AE296F0D2A00DCD5D2 /* Products */,
 			);
@@ -154,6 +153,7 @@
 				4C62BB04297EF860004EFE8B /* OZError.swift */,
 				4CA434D9296F147000DCD5D2 /* Constants.swift */,
 				4C62BB08297F1C90004EFE8B /* TextFieldValidation.swift */,
+				4C680C152995E95100BD83DD /* Models */,
 				E0D5382B2983269A00CAFD59 /* ReusableViews */,
 				4C810A2C297F53F1005FBBD7 /* Controllers */,
 				4C810A33297F57EE005FBBD7 /* Coordinators */,

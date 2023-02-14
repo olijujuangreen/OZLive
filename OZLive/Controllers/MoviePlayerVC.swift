@@ -14,8 +14,6 @@ class MoviePlayerVC: UIViewController {
     var messages = [Message]()
     let user = Auth.auth().currentUser
     
-    let ref = Database.database().reference()
-    
     let moviePlayerView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -62,11 +60,8 @@ class MoviePlayerVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         chatTextField.delegate = self
-        retrieveMessages { [weak self] message in
-            guard let self = self else { return }
-            self.messages.append(message)
-            self.chatTableView.reloadData()
-        }
+        observeMessages()
+        setupTableView()
     }
     
     
@@ -120,22 +115,40 @@ class MoviePlayerVC: UIViewController {
 
     }
     
-    func sendMessage(senderID: String, message: String) {
-        
-        let messageRef = ref.child("movieMessages").childByAutoId()
-        let messageData = ["senderId": senderID, "message": message]
-        messageRef.setValue(messageData)
+    func setupTableView() {
+        chatTableView.delegate = self
+        chatTableView.dataSource = self
+        chatTableView.register(MessageCell.self, forCellReuseIdentifier: ReuseIds.messageCell.rawValue)
+//        chatTableView.register(UITableViewCell.self, forCellReuseIdentifier: "messageCell")
     }
     
-    func retrieveMessages(completion: @escaping(Message) -> Void) {
-        let messagesRef = ref.child("movieMessages")
+    func sendMessage(senderID: String, message: String) {
+        let ref = Database.database().reference(fromURL: Storage.referenceURLString.rawValue)
+        let featureMovieRef = ref.child("featureMovie")
+        let messageRef = featureMovieRef.child("messages").childByAutoId()
+        let messageData = ["senderId": senderID, "message": message]
+        messageRef.setValue(messageData)
+        self.chatTableView.reloadData()
+    }
+    
+    func observeMessages()  {
+        let ref = Database.database().reference(fromURL: Storage.referenceURLString.rawValue)
+        let featuredMovieRef = ref.child("featureMovie")
+        let messagesRef = featuredMovieRef.child("messages")
+        
         messagesRef.observe(.childAdded) { snapshot in
-            let messageData = snapshot.value as! [String: String]
-            if let senderID = messageData["senderID"], let contents = messageData["message"] {
-                let message = Message(senderID: senderID, contents: contents)
-                completion(message)
+            guard let messageData = snapshot.value as? [String: Any],
+                  let senderID = messageData["senderId"] as? String,
+                  let contents = messageData["message"] as? String else {
+                return
             }
+            
+            let message = Message(senderID: senderID, contents: contents)
+            self.messages.append(message)
+            print(self.messages)
         }
+        
+        self.chatTableView.reloadData()
     }
 
 
@@ -148,13 +161,12 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageCell
-        cell.setMessage(message: messages[indexPath.row])
-//        cell.usernameLabel.text = message.username
-//        cell.messageLabel.text = message.contents
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIds.messageCell.rawValue, for: indexPath) as! MessageCell
+        let message = messages[indexPath.row]
+        cell.setMessage(message: message)
         return cell
     }
+
 
 }
 
