@@ -18,6 +18,7 @@
 		4C810A30297F5702005FBBD7 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C810A2F297F5702005FBBD7 /* Coordinator.swift */; };
 		4C810A32297F57E6005FBBD7 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C810A31297F57E6005FBBD7 /* MainCoordinator.swift */; };
 		4C8AFCA329705EC200FFB928 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8AFCA229705EC200FFB928 /* LoginVC.swift */; };
+		4C8F7E1A299BEB750043B589 /* OZPosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F7E19299BEB750043B589 /* OZPosterView.swift */; };
 		4CA434B1296F0D2A00DCD5D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA434B0296F0D2A00DCD5D2 /* AppDelegate.swift */; };
 		4CA434B3296F0D2A00DCD5D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA434B2296F0D2A00DCD5D2 /* SceneDelegate.swift */; };
 		4CA434BA296F0D2D00DCD5D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CA434B9296F0D2D00DCD5D2 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		4C810A2F297F5702005FBBD7 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4C810A31297F57E6005FBBD7 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		4C8AFCA229705EC200FFB928 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		4C8F7E19299BEB750043B589 /* OZPosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OZPosterView.swift; sourceTree = "<group>"; };
 		4CA434AD296F0D2A00DCD5D2 /* OZLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OZLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CA434B0296F0D2A00DCD5D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CA434B2296F0D2A00DCD5D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,15 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		4C8F7E18299BEB580043B589 /* CollectionCells */ = {
+			isa = PBXGroup;
+			children = (
+				E0D5382C298331C900CAFD59 /* SettingsCell.swift */,
+				4CA4B7B5299473B200226B8A /* MessageCell.swift */,
+			);
+			path = CollectionCells;
+			sourceTree = "<group>";
+		};
 		4CA434A4296F0D2A00DCD5D2 = {
 			isa = PBXGroup;
 			children = (
@@ -170,10 +181,10 @@
 		E0D5382B2983269A00CAFD59 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				4C8F7E18299BEB580043B589 /* CollectionCells */,
 				4C1572062982FAB60036D8F3 /* OZTicker.swift */,
 				4C1572042982ED920036D8F3 /* OZTabBarController.swift */,
-				E0D5382C298331C900CAFD59 /* SettingsCell.swift */,
-				4CA4B7B5299473B200226B8A /* MessageCell.swift */,
+				4C8F7E19299BEB750043B589 /* OZPosterView.swift */,
 			);
 			path = ReusableViews;
 			sourceTree = "<group>";
@@ -264,6 +275,7 @@
 				4CAB323B2981EDE9003C1811 /* ProfileVC.swift in Sources */,
 				4CA4B7B6299473B200226B8A /* MessageCell.swift in Sources */,
 				4C810A32297F57E6005FBBD7 /* MainCoordinator.swift in Sources */,
+				4C8F7E1A299BEB750043B589 /* OZPosterView.swift in Sources */,
 				4C2E7DF829707B28002867B6 /* SignupVC.swift in Sources */,
 				4CBCB1062992F8D80011E542 /* TabCoordinator.swift in Sources */,
 				4C1572052982ED920036D8F3 /* OZTabBarController.swift in Sources */,
