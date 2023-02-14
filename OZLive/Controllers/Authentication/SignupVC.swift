@@ -80,8 +80,15 @@ class SignupVC: UIViewController {
             guard let uid = result?.user.uid else { return }
             
             let reference = Database.database().reference(fromURL: Storage.referenceURLString.rawValue)
+            
+            let movieReference = reference.child("featureMovie")
+            let messageValues = ["videoURLString": Storage.avengersURLString.rawValue, "messages": [Message]()]
+            movieReference.updateChildValues(messageValues) { err, ref in
+                
+            }
+            
             let usersReference = reference.child("users").child(uid)
-            let values = ["email": email, "password": password, "username": username]
+            let values = ["email": email, "username": username]
             usersReference.updateChildValues(values) { databaseError, databaseReference in
                 if databaseError != nil {
                     print("THERE WAS AN ERROR \(databaseError)")

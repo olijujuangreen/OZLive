@@ -7,10 +7,12 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class MoviePlayerVC: UIViewController {
     var player = AVPlayer()
-    var messages = [String]()
+    var messages = [Message]()
+    let user = Auth.auth().currentUser
     
     let moviePlayerView: UIView = {
         let view = UIView()
@@ -36,9 +38,15 @@ class MoviePlayerVC: UIViewController {
     
     let chatTableView: UITableView = {
         let table = UITableView()
-        table.backgroundColor = .systemRed
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
+    }()
+    
+    let chatTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Enter Mesasge ..."
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
     }()
     
     
@@ -51,6 +59,9 @@ class MoviePlayerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        chatTextField.delegate = self
+        observeMessages()
+        setupTableView()
     }
     
     
@@ -61,7 +72,7 @@ class MoviePlayerVC: UIViewController {
     
     func setupViews() {
         let moviePlayerHeight = (view.frame.width * 1080) / 1920
-        [moviePlayerView, chatTableView].forEach { view.addSubview($0) }
+        [moviePlayerView, chatTableView, chatTextField].forEach { view.addSubview($0) }
         
         NSLayoutConstraint.activate([
         
@@ -73,7 +84,12 @@ class MoviePlayerVC: UIViewController {
             chatTableView.topAnchor.constraint(equalTo: moviePlayerView.bottomAnchor),
             chatTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             chatTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            chatTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constraints.largeVerticalSpacing.rawValue)
+            chatTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constraints.largeVerticalSpacing.rawValue * 2),
+            
+            chatTextField.topAnchor.constraint(equalTo: chatTableView.bottomAnchor),
+            chatTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            chatTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            chatTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         
         ])
         
@@ -84,7 +100,7 @@ class MoviePlayerVC: UIViewController {
     }
     
     func setupPlayer() {
-        let movieURL = URL(string: Storage.movieURLString.rawValue)!
+        let movieURL = URL(string: Storage.avengersURLString.rawValue)!
         
         player = AVPlayer(url: movieURL)
         let playerLayer = AVPlayerLayer(player: player)
@@ -98,6 +114,43 @@ class MoviePlayerVC: UIViewController {
         player.seek(to: time, toleranceBefore: tolerance, toleranceAfter: tolerance)
 
     }
+    
+    func setupTableView() {
+        chatTableView.delegate = self
+        chatTableView.dataSource = self
+        chatTableView.register(MessageCell.self, forCellReuseIdentifier: ReuseIds.messageCell.rawValue)
+//        chatTableView.register(UITableViewCell.self, forCellReuseIdentifier: "messageCell")
+    }
+    
+    func sendMessage(senderID: String, message: String) {
+        let ref = Database.database().reference(fromURL: Storage.referenceURLString.rawValue)
+        let featureMovieRef = ref.child("featureMovie")
+        let messageRef = featureMovieRef.child("messages").childByAutoId()
+        let messageData = ["senderId": senderID, "message": message]
+        messageRef.setValue(messageData)
+        self.chatTableView.reloadData()
+    }
+    
+    func observeMessages()  {
+        let ref = Database.database().reference(fromURL: Storage.referenceURLString.rawValue)
+        let featuredMovieRef = ref.child("featureMovie")
+        let messagesRef = featuredMovieRef.child("messages")
+        
+        messagesRef.observe(.childAdded) { snapshot in
+            guard let messageData = snapshot.value as? [String: Any],
+                  let senderID = messageData["senderId"] as? String,
+                  let contents = messageData["message"] as? String else {
+                return
+            }
+            
+            let message = Message(senderID: senderID, contents: contents)
+            self.messages.append(message)
+            print(self.messages)
+        }
+        
+        self.chatTableView.reloadData()
+    }
+
 
 }
 
@@ -108,7 +161,22 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId")
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIds.messageCell.rawValue, for: indexPath) as! MessageCell
+        let message = messages[indexPath.row]
+        cell.setMessage(message: message)
+        return cell
+    }
+
+
+}
+
+extension MoviePlayerVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let message = textField.text!
+        sendMessage(senderID: user!.uid, message: message)
+        textField.text = ""
+        textField.resignFirstResponder()
+        return true
     }
 }
+
