@@ -125,6 +125,7 @@ class MoviePlayerVC: UIViewController {
     }
     
     func sendMessage(senderID: String, message: String) {
+        guard chatTextField.text != "" else { return }
         let messageRef = featuredMovieRef.child("messages").childByAutoId()
         let messageData = ["senderId": senderID, "message": message]
         messageRef.setValue(messageData)
@@ -177,6 +178,10 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .systemBackground
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chatTableView.deselectRow(at: indexPath, animated: true)
     }
 
 
