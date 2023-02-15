@@ -18,6 +18,8 @@ class MessageCell: UITableViewCell {
     
     let messageLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,18 +40,19 @@ class MessageCell: UITableViewCell {
     
     
     func setupViews() {
-        [usernameLabel, messageLabel].forEach { addSubview($0) }
+        [usernameLabel, messageLabel].forEach { self.contentView.addSubview($0) }
         
         NSLayoutConstraint.activate([
         
-            usernameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            usernameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constraints.widePadding.rawValue),
+            usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constraints.widePadding.rawValue),
             usernameLabel.widthAnchor.constraint(equalToConstant: Constraints.usernameLabelWidth.rawValue),
             
             messageLabel.leadingAnchor.constraint(equalTo: usernameLabel.trailingAnchor, constant: Constraints.widePadding.rawValue),
-            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            messageLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-        
+            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            messageLabel.topAnchor.constraint(equalTo: usernameLabel.topAnchor),
+            
+            contentView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor)
         ])
     }
     

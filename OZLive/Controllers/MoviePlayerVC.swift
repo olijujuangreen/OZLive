@@ -162,6 +162,10 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
         return messages.count
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIds.messageCell.rawValue, for: indexPath) as! MessageCell
         let message = messages[indexPath.row]
