@@ -18,21 +18,16 @@ class HomeVC: UIViewController{
     let movieBannerImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "Avengers")
-        iv.backgroundColor = .systemRed
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
-    let movieBannerView: OZPosterView = {
-        let imageView = OZPosterView(image: UIImage(named: "Avengers"))
-        imageView.contentMode = .scaleAspectFit
-        imageView.addFadingBottom()
-        imageView.backgroundColor = .red
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    let movieDetailView: MovieDetailView = {
+        let view = MovieDetailView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
-
     
     let tickerLabel: UILabel = {
         let label = UILabel()
@@ -104,23 +99,27 @@ class HomeVC: UIViewController{
     
     func setupViews() {
         view.backgroundColor = .systemBackground
-        [movieBannerView, tickerLabel, enterButton].forEach { view.addSubview($0) }
+        [movieBannerImageView, movieDetailView, tickerLabel, enterButton].forEach { view.addSubview($0) }
         
         NSLayoutConstraint.activate([
             
-            movieBannerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constraints.largeVerticalSpacing.rawValue),
-            movieBannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            movieBannerView.heightAnchor.constraint(equalToConstant: AssetSize.movieBannerHeight.rawValue),
-            movieBannerView.widthAnchor.constraint(equalToConstant: AssetSize.movieBannerWidth.rawValue),
+            movieBannerImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            movieBannerImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            movieBannerImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            movieBannerImageView.heightAnchor.constraint(equalToConstant: 300),
+            
+            movieDetailView.topAnchor.constraint(equalTo: movieBannerImageView.bottomAnchor),
+            movieDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            movieDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            movieDetailView.heightAnchor.constraint(equalToConstant: 200),
             
             tickerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tickerLabel.topAnchor.constraint(equalTo: movieBannerView.bottomAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
+            tickerLabel.bottomAnchor.constraint(equalTo: enterButton.topAnchor, constant: -Constraints.largeVerticalSpacing.rawValue),
             tickerLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tickerLabel.heightAnchor.constraint(equalToConstant: 40),
-            
-            enterButton.topAnchor.constraint(equalTo: tickerLabel.bottomAnchor, constant: 8),
+            tickerLabel.heightAnchor.constraint(equalToConstant: Constraints.tickerTextHeight.rawValue),
+
+            enterButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constraints.largeVerticalSpacing.rawValue),
             enterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
         ])
     }
     
