@@ -12,17 +12,20 @@ class MessageCell: UITableViewCell {
     
     let usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "username"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let messageLabel: UILabel = {
         let label = UILabel()
-        label.text = "contents of the message"
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,19 +36,23 @@ class MessageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
+    
     func setupViews() {
-        [usernameLabel, messageLabel].forEach { addSubview($0) }
+        [usernameLabel, messageLabel].forEach { self.contentView.addSubview($0) }
         
         NSLayoutConstraint.activate([
         
-            usernameLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
-            usernameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constraints.widePadding.rawValue),
+            usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constraints.widePadding.rawValue),
             usernameLabel.widthAnchor.constraint(equalToConstant: Constraints.usernameLabelWidth.rawValue),
             
             messageLabel.leadingAnchor.constraint(equalTo: usernameLabel.trailingAnchor, constant: Constraints.widePadding.rawValue),
-            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            messageLabel.topAnchor.constraint(equalTo: topAnchor)
-        
+            messageLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            messageLabel.topAnchor.constraint(equalTo: usernameLabel.topAnchor),
+            
+            contentView.bottomAnchor.constraint(equalTo: messageLabel.bottomAnchor)
         ])
     }
     

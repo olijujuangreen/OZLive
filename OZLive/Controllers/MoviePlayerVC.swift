@@ -10,6 +10,8 @@ import AVFoundation
 import Firebase
 
 class MoviePlayerVC: UIViewController {
+    let featuredMovieRef = Database.database().reference(fromURL: Storage.referenceURLString.rawValue).child("featureMovie")
+    
     var player = AVPlayer()
     var messages = [Message]()
     let user = Auth.auth().currentUser
@@ -60,8 +62,8 @@ class MoviePlayerVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         chatTextField.delegate = self
-        observeMessages()
         setupTableView()
+        observeMessages()
     }
     
     
@@ -123,17 +125,13 @@ class MoviePlayerVC: UIViewController {
     }
     
     func sendMessage(senderID: String, message: String) {
-        let ref = Database.database().reference(fromURL: Storage.referenceURLString.rawValue)
-        let featureMovieRef = ref.child("featureMovie")
-        let messageRef = featureMovieRef.child("messages").childByAutoId()
+        guard chatTextField.text != "" else { return }
+        let messageRef = featuredMovieRef.child("messages").childByAutoId()
         let messageData = ["senderId": senderID, "message": message]
         messageRef.setValue(messageData)
-        self.chatTableView.reloadData()
     }
     
-    func observeMessages()  {
-        let ref = Database.database().reference(fromURL: Storage.referenceURLString.rawValue)
-        let featuredMovieRef = ref.child("featureMovie")
+    func observeMessages() {
         let messagesRef = featuredMovieRef.child("messages")
         
         messagesRef.observe(.childAdded) { snapshot in
@@ -145,10 +143,15 @@ class MoviePlayerVC: UIViewController {
             
             let message = Message(senderID: senderID, contents: contents)
             self.messages.append(message)
-            print(self.messages)
+            
+            DispatchQueue.main.async {
+                self.chatTableView.reloadData()
+                self.chatTableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: true)
+            }
+            
         }
         
-        self.chatTableView.reloadData()
+        
     }
 
 
@@ -160,11 +163,25 @@ extension MoviePlayerVC: UITableViewDelegate, UITableViewDataSource {
         return messages.count
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIds.messageCell.rawValue, for: indexPath) as! MessageCell
         let message = messages[indexPath.row]
         cell.setMessage(message: message)
+        
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = .systemFill
+        } else {
+            cell.backgroundColor = .systemBackground
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chatTableView.deselectRow(at: indexPath, animated: true)
     }
 
 

@@ -24,6 +24,16 @@ class HomeVC: UIViewController{
         return iv
     }()
     
+    let movieBannerView: OZPosterView = {
+        let imageView = OZPosterView(image: UIImage(named: "Avengers"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.addFadingBottom()
+        imageView.backgroundColor = .red
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
+    
     let tickerLabel: UILabel = {
         let label = UILabel()
         label.text = "99:99:99"
@@ -59,7 +69,6 @@ class HomeVC: UIViewController{
         super.viewDidLoad()
         setupViews()
         startTimer()
-        view.backgroundColor = .systemBackground
     }
     
     
@@ -94,17 +103,18 @@ class HomeVC: UIViewController{
     }
     
     func setupViews() {
-        [movieBannerImageView, tickerLabel, enterButton].forEach { view.addSubview($0) }
+        view.backgroundColor = .systemBackground
+        [movieBannerView, tickerLabel, enterButton].forEach { view.addSubview($0) }
         
         NSLayoutConstraint.activate([
             
-            movieBannerImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constraints.largeVerticalSpacing.rawValue),
-            movieBannerImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            movieBannerImageView.heightAnchor.constraint(equalToConstant: AssetSize.movieBannerHeight.rawValue),
-            movieBannerImageView.widthAnchor.constraint(equalToConstant: AssetSize.movieBannerWidth.rawValue),
+            movieBannerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constraints.largeVerticalSpacing.rawValue),
+            movieBannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            movieBannerView.heightAnchor.constraint(equalToConstant: AssetSize.movieBannerHeight.rawValue),
+            movieBannerView.widthAnchor.constraint(equalToConstant: AssetSize.movieBannerWidth.rawValue),
             
             tickerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tickerLabel.topAnchor.constraint(equalTo: movieBannerImageView.bottomAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
+            tickerLabel.topAnchor.constraint(equalTo: movieBannerView.bottomAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
             tickerLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
             tickerLabel.heightAnchor.constraint(equalToConstant: 40),
             
