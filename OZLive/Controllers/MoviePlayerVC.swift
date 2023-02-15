@@ -121,7 +121,6 @@ class MoviePlayerVC: UIViewController {
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.register(MessageCell.self, forCellReuseIdentifier: ReuseIds.messageCell.rawValue)
-//        chatTableView.register(UITableViewCell.self, forCellReuseIdentifier: "messageCell")
     }
     
     func sendMessage(senderID: String, message: String) {

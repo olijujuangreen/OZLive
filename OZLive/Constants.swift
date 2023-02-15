@@ -64,6 +64,9 @@ enum Constraints: CGFloat {
     //    Message Cell Spacing
     case usernameLabelWidth = 160
     
+    //    Text Sizes
+    case movieTitleLabelHeight  = 30
+    case tickerTextHeight       = 40
 }
 
 //MARK: - Sizes
