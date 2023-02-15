@@ -60,12 +60,29 @@ class MovieDetailView: UIView {
         print("Invite Button Pressed")
     }
     
+    let castLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 18)
+        label.text = "Cast"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let castCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
+    
     
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        configureCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -76,7 +93,7 @@ class MovieDetailView: UIView {
     
     
     func setupViews() {
-        [movieTitleLabel, releaseYearLabel, ratingLabel, descriptionLabel, inviteButton].forEach { addSubview($0) }
+        [movieTitleLabel, releaseYearLabel, ratingLabel, descriptionLabel, inviteButton, castLabel, castCollectionView].forEach { addSubview($0) }
         
         NSLayoutConstraint.activate([
             movieTitleLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -95,11 +112,45 @@ class MovieDetailView: UIView {
             inviteButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
             inviteButton.leadingAnchor.constraint(equalTo: releaseYearLabel.leadingAnchor),
             inviteButton.widthAnchor.constraint(equalToConstant: 80),
-            inviteButton.heightAnchor.constraint(equalToConstant: 30)
+            inviteButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            castLabel.topAnchor.constraint(equalTo: inviteButton.bottomAnchor, constant: Constraints.narrowPadding.rawValue),
+            castLabel.leadingAnchor.constraint(equalTo: inviteButton.leadingAnchor),
+            
+            castCollectionView.topAnchor.constraint(equalTo: castLabel.bottomAnchor),
+            castCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            castCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            castCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            
+            
         ])
-        
     }
     
+    func configureCollectionView() {
+        castCollectionView.delegate = self
+        castCollectionView.dataSource = self
+        castCollectionView.register(CastCell.self, forCellWithReuseIdentifier: "cellId")
+    }
     
+}
 
+
+
+
+
+extension MovieDetailView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CastCell
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
 }

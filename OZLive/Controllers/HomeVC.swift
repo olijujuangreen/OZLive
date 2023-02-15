@@ -33,7 +33,7 @@ class HomeVC: UIViewController{
         let label = UILabel()
         label.text = "99:99:99"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 38)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -111,14 +111,14 @@ class HomeVC: UIViewController{
             movieDetailView.topAnchor.constraint(equalTo: movieBannerImageView.bottomAnchor),
             movieDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             movieDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            movieDetailView.heightAnchor.constraint(equalToConstant: 200),
+            movieDetailView.heightAnchor.constraint(equalToConstant: 320),
             
             tickerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tickerLabel.bottomAnchor.constraint(equalTo: enterButton.topAnchor, constant: -Constraints.largeVerticalSpacing.rawValue),
+            tickerLabel.topAnchor.constraint(equalTo: movieDetailView.bottomAnchor, constant: Constraints.largeVerticalSpacing.rawValue),
             tickerLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tickerLabel.heightAnchor.constraint(equalToConstant: Constraints.tickerTextHeight.rawValue),
+            tickerLabel.heightAnchor.constraint(equalToConstant: Constraints.movieTitleLabelHeight.rawValue + 2),
 
-            enterButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constraints.largeVerticalSpacing.rawValue),
+            enterButton.topAnchor.constraint(equalTo: tickerLabel.bottomAnchor, constant: Constraints.standardVerticalSpacing.rawValue),
             enterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
