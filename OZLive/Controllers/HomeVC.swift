@@ -50,6 +50,7 @@ class HomeVC: UIViewController{
         
         if user != nil {
             let vc = MoviePlayerVC()
+            vc.premiereDate = self.premiereDate
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         } else {

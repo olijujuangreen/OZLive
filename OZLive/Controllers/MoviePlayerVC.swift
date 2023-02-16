@@ -15,6 +15,7 @@ class MoviePlayerVC: UIViewController {
     var player = AVPlayer()
     var messages = [Message]()
     let user = Auth.auth().currentUser
+    var premiereDate: Date!
     
     let moviePlayerView: UIView = {
         let view = UIView()
@@ -96,7 +97,7 @@ class MoviePlayerVC: UIViewController {
         ])
         
         self.view.layoutIfNeeded()
-//        setupPlayer()
+        setupPlayer()
         moviePlayerView.addSubview(dismissButton)
         dismissButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
     }
@@ -108,14 +109,29 @@ class MoviePlayerVC: UIViewController {
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = moviePlayerView.bounds
         moviePlayerView.layer.addSublayer(playerLayer)
+        playMovie(player: player)
         
-        player.play()
+//        player.play()
+//
+//        let time = CMTime(seconds: 30, preferredTimescale: 1)
+//        let tolerance = CMTime(seconds: 5, preferredTimescale: 1)
+//        player.seek(to: time, toleranceBefore: tolerance, toleranceAfter: tolerance)
         
-        let time = CMTime(seconds: 30, preferredTimescale: 1)
-        let tolerance = CMTime(seconds: 5, preferredTimescale: 1)
-        player.seek(to: time, toleranceBefore: tolerance, toleranceAfter: tolerance)
+        
 
     }
+    
+    func playMovie(player: AVPlayer) {
+        let currentTime = Date()
+        let elapsedTime = currentTime.timeIntervalSince(self.premiereDate)
+        let seekTime = elapsedTime > 0 ? elapsedTime : 0
+        let cmSeekTime = CMTimeMakeWithSeconds(seekTime, preferredTimescale: 1000)
+        let tolerance = CMTime(seconds: 5, preferredTimescale: 1)
+        player.play()
+        player.seek(to: cmSeekTime, toleranceBefore: tolerance, toleranceAfter: tolerance)
+        print("Seeking to \(seekTime) seconds into the movie...")
+    }
+
     
     func setupTableView() {
         chatTableView.delegate = self
